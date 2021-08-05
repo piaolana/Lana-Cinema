@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>친절한 라나 씨네마</title>
+    <link rel="stylesheet" type="text/css" href="style-size.css">
+    <link rel="stylesheet" type="text/css" href="style-layout.css">
+    <link rel="stylesheet" type="text/css" href="style-presentation.css">
+    
+</head>
+
+<header>
+    <a id="logo" href="index.html">친절한 라나 씨네마</a>
+</header>
+
+<body id="reserve">
+    <form>
+        <fieldset>
+            <legend>영화 예매</legend>
+            <br>
+            영화 &nbsp;<select id="movie" size="1">
+                <option value="default_m" selected>예매하실 영화를 선택해주세요</option>
+                <option value="park">박화영</option>
+                <option value="adult">어른들은 아무것도 몰라요</option>
+                <option value="hummingbird">벌새</option>
+            </select>
+            <br/><br/>
+            날짜 &nbsp;<input type="date" id="rsv_date" min="2021-06-01"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            시간 &nbsp;<select id="rsv_time" size="1">
+                <option value="default_t" selected>예매하실 시간을 선택해주세요</option>
+                <option value="9am">오전 9시</option>
+                <option value="12pm">오후 12시</option>
+                <option value="3pm">오후 3시</option>
+                <option value="6pm">오후 6시</option>
+                <option value="9pm">오후 9시</option>
+            </select>
+            <br/><br/>
+            인원 &nbsp;<input type="text" id="pnum">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            금액 &nbsp;<input type="text" id="price">
+            <br/><br/>
+            <fieldset>
+
+                <legend>좌석 배치도</legend>
+                <br/>
+                <table id="screen" border="1">
+                    <tr><td>스크린</td></tr>
+                </table>
+
+                <br/><br/>
+                <table id="seat1" border="1">
+                    <tr><td id="a1" onclick="click_seat('a1')">A1</td><td id="a2" onclick="click_seat('a2')">A2</td><td id="a3" onclick="click_seat('a3')">A3</td></tr>
+                    <tr><td id="b1" onclick="click_seat('b1')">B1</td><td id="b2" onclick="click_seat('b2')">B2</td><td id="b3" onclick="click_seat('b3')">B3</td></tr>
+                    <tr><td id="c1" onclick="click_seat('c1')">C1</td><td id="c2" onclick="click_seat('c2')">C2</td><td id="c3" onclick="click_seat('c3')">C3</td></tr>
+                    <tr><td id="d1" onclick="click_seat('d1')">D1</td><td id="d2" onclick="click_seat('d2')">D2</td><td id="d3" onclick="click_seat('d3')">D3</td></tr>
+                    <tr><td id="e1" onclick="click_seat('e1')">E1</td><td id="e2" onclick="click_seat('e2')">E2</td><td id="e3" onclick="click_seat('e3')">E3</td></tr>
+                </table>
+                <table id="seat2" border="1">
+                    <tr><td id="a4" onclick="click_seat('a4')">A4</td><td id="a5" onclick="click_seat('a5')">A5</td><td id="a6" onclick="click_seat('a6')">A6</td></tr>
+                    <tr><td id="b4" onclick="click_seat('b4')">B4</td><td id="b5" onclick="click_seat('b5')">B5</td><td id="b6" onclick="click_seat('b6')">B6</td></tr>
+                    <tr><td id="c4" onclick="click_seat('c4')">C4</td><td id="c5" onclick="click_seat('c5')">C5</td><td id="c6" onclick="click_seat('c6')">C6</td></tr>
+                    <tr><td id="d4" onclick="click_seat('d4')">D4</td><td id="d5" onclick="click_seat('d5')">D5</td><td id="d6" onclick="click_seat('d6')">D6</td></tr>
+                    <tr><td id="e4" onclick="click_seat('e4')">E4</td><td id="e5" onclick="click_seat('e5')">E5</td><td id="e6" onclick="click_seat('e6')">E6</td></tr>
+                </table>
+            </fieldset>
+
+            <br/><br/>
+            <button type="button" onclick="check()">예매하기</button>
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+
+        var rlist = [];
+        for (var i=1; i<7; i++) {
+            document.getElementById("a"+i).style.backgroundColor = "yellow";
+            document.getElementById("b"+i).style.backgroundColor = "yellow";
+            document.getElementById("c"+i).style.backgroundColor = "yellow";
+            document.getElementById("d"+i).style.backgroundColor = "yellow";
+            document.getElementById("e"+i).style.backgroundColor = "yellow";
+            
+        }
+
+        function click_seat(seatno) {
+
+            var idx = rlist.indexOf(seatno);
+
+            if (idx > -1) {
+                rlist.splice(idx, 1);
+                document.getElementById(seatno).style.backgroundColor = "yellow";
+                document.getElementById("pnum").value = rlist.length;
+                document.getElementById("price").value = rlist.length * 9000;
+            }
+
+            else {
+                rlist.push(seatno);
+                document.getElementById(seatno).style.backgroundColor = "grey";
+                document.getElementById("pnum").value = rlist.length;
+                document.getElementById("price").value = rlist.length * 9000;
+            }
+        }
+
+        function check() {
+
+            var movie = document.getElementById("movie").value;
+            var date = document.getElementById("rsv_date").value;
+            var time = document.getElementById("rsv_time").value;
+            var pnum = document.getElementById("pnum").value;
+            var price = document.getElementById("price").value;
+
+            var seatnum;
+            for (var i=0; i<rlist.length; i++) {
+                seatnum = seatnum + " " + rlist[i];
+            }
+            seatnum = seatnum.slice(10,);
+            seatnum = seatnum.toUpperCase();
+
+            var ls = window.localStorage;
+
+            switch (movie) {
+                case "park":
+                    movie = "박화영"; break;
+                case "adult":
+                    movie = "어른들은 몰라요"; break;
+                case "hummingbird":
+                    movie = "벌새"; break;
+                }
+
+            switch (time) {
+                case "9am":
+                    time = "오전 9시"; break;
+                case "12pm":
+                    time = "오후 12시"; break;
+                case "3pm":
+                    time = "오후 3시"; break;
+                case "6pm":
+                    time = "오후 6시"; break;
+                case "9pm":
+                    time = "오후 9시"; break;
+                }
+
+            if (movie === "default_m")
+                alert("예매하실 영화를 선택해주세요.");
+            
+            else if (date === "")
+                alert("예매하실 날짜를 선택해주세요.");
+            
+            else if (time === "default_t")
+                alert("예매하실 시간을 선택해주세요.")
+
+            else if (pnum == 0)
+                alert("예매하실 좌석을 선택해주세요.")
+            
+            else
+
+                if (confirm("결제 전에 확인해주세요\n\n영화: " + movie +
+                            "\n날짜: " + date + "\n시간: " + time +
+                            "\n인원: " + pnum + "명\n좌석: " + seatnum +
+                            "\n\n결제 금액: " + price)) {
+                                alert("결제되셨습니다.");
+                    
+                    var num = localStorage.length;
+                    
+                    if (num > 0) {
+                        var before_list = JSON.parse(ls.getItem("before_list"));
+                    }
+
+                    else {
+                        var before_list = [];
+                    }
+
+                    var rsv_arry = [movie, date, time, seatnum];
+                    before_list.push(rsv_arry);
+                    ls.setItem("before_list", JSON.stringify(before_list));
+                    
+                    window.open('', '_self').close();
+                            }
+                else {
+                    alert("취소되셨습니다.");
+                }
+        }
+
+
+    </script>
+</body>
+
+<footer>
+    <div id="copyright"> Copyright (c) 2021 Cinema for Lana Vengeance</div>
+</footer>
+</html>

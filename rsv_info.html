@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>친절한 라나 씨네마</title>
+    <link rel="stylesheet" type="text/css" href="style-size.css">
+    <link rel="stylesheet" type="text/css" href="style-layout.css">
+    <link rel="stylesheet" type="text/css" href="style-presentation.css">
+    
+</head>
+
+<header>
+    <a id="logo" href="index.html">친절한 라나 씨네마</a>
+    <span class="right" style="padding: 30px 10px;">
+        <a href="login.html">로그인</a> | <a href="join.html">회원가입</a>
+    </span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="aboutus.html">극장 소개</a></li>
+        <li><a href="onscreen.html">상영 중인 영화</a></li>
+        <li><a href="reservation.html" target="_blank">영화 예매</a></li>
+        <li><a href="confirmation.html">예매 내역 확인</a></li>
+        <li><a href="movie_list.html">영화 DB</a></li>
+    </ul>
+</nav>
+
+<body>
+
+    <figure id="figure">
+    <table><tr>
+        <td id="movie_pic"> </td>
+        <td id="rsv_info"> </td>
+    </tr></table></figure>
+
+    
+    <input type="button" id="cancel" value="예매 취소" onclick="cancel_movie()">
+
+
+    <script type="text/javascript">
+        var ls = window.localStorage;
+        var before_list = JSON.parse(ls.getItem("before_list"));
+        var num = before_list.length;
+        var movie = [];
+        var date = [];
+        var time = [];
+        var seatnum = [];
+
+        for (var i=0; i<num; i++) {
+            movie.push(before_list[i][0]);
+            date.push(before_list[i][1]);
+            time.push(before_list[i][2]);
+            seatnum.push(before_list[i][3]);
+        }
+
+        var rsv_num = window.sessionStorage.getItem("check_num");
+        rsv_num = rsv_num - 1;
+        
+        movie = movie[rsv_num];
+        date = date[rsv_num];
+        time = time[rsv_num];
+        seatnum = seatnum[rsv_num];
+
+        var p = document.getElementById("movie_pic");
+
+        if (movie === "박화영") {
+            p.innerHTML = "<img src='박화영.jpg' width='350' height='540'>";
+        }
+        else if (movie === "어른들은 몰라요") {
+            p.innerHTML = "<img src='어른들은몰라요.jpg' width='350' height='540'>";
+        }
+        else if (movie === "벌새") {
+            p.innerHTML = "<img src='벌새.jpg' width='350' height='540'>";
+        }
+
+        document.getElementById("rsv_info").innerHTML = 
+            "예매 영화<br/><strong>" + movie + 
+            "</strong><br/><br/>예매 일시<br/><strong>" + date + "  " + time + 
+            "</strong><br/><br/>좌석 번호<br/><strong>" + seatnum + "</strong>";
+        
+        function cancel_movie() {
+            if (confirm("예매 취소하시겠습니까?")) {
+                before_list.splice(rsv_num, 1);
+                ls.setItem("before_list", JSON.stringify(before_list));
+                alert("예매 취소되었습니다.")
+                window.location = "confirmation.html";
+            }
+        }
+
+    </script>
+</body>
+
+<footer>
+    <div id="copyright"> Copyright (c) 2021 Cinema for Lana Vengeance</div>
+</footer>
+</html>

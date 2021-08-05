@@ -1,0 +1,32 @@
+
+body {font-size: 0.75em; line-height: 1.2em;}
+img {border:none;}
+.wrap {text-align: left; background-color: white;}
+a {text-decoration: none;}
+
+nav {background-color: #8bbbbb;}
+nav ul {list-style: none; font-size: 14px; font-weight: bold;}
+nav a {text-decoration: none; color:black; border-style: hidden hidden solid hidden; border-color: transparent;}
+nav a:hover {color: navy; border-color: #ee6213;}
+
+header .right a:hover {color: gray;}
+article ul li {font-size: 30px; list-style-type: none; line-height: 1.2em}
+article ul dd {font-size: 15px; line-height: 1.2em;}
+
+#logo {color: #5d2e1c; font-size: 48px;}
+
+.movielist ul li {font-size: 15px; line-height: 1.2em; list-style-type: none;}
+.movielist ul li img {border: solid; border-color: lightgray; border-width: 1px;}
+
+.onscreen table td {font-size: 20px; line-height: 1.2em;}
+.onscreen .head {font-size: 20px;}
+
+#info td {font-size: 20px; line-height: 1.5em;}
+#info .story {font-size: 17px; line-height: 1.5em;}
+
+#rsv_list {font-size: 20px; line-height: 4em;}
+#show_rsv {font-size: 20px; line-height: 1.5em;}
+#rsv_num {margin-top: 20px;}
+#rsv_info {font-size: 15px; line-height: 2em;}
+
+#cancel {color: red;}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>친절한 라나 씨네마</title>
+    <link rel="stylesheet" type="text/css" href="style-size.css">
+    <link rel="stylesheet" type="text/css" href="style-layout.css">
+    <link rel="stylesheet" type="text/css" href="style-presentation.css">
+    
+</head>
+
+<header>
+    <a id="logo" href="index.html">친절한 라나 씨네마</a>
+    <span class="right" style="padding: 30px 10px;">
+        <a href="login.html">로그인</a> | <a href="join.html">회원가입</a>
+    </span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="aboutus.html">극장 소개</a></li>
+        <li><a href="onscreen.html">상영 중인 영화</a></li>
+        <li><a href="reservation.html" target="_blank">영화 예매</a></li>
+        <li><a href="confirmation.html">예매 내역 확인</a></li>
+        <li><a href="movie_list.html">영화 DB</a></li>
+    </ul>
+</nav>
+
+<body>
+
+    <p><br/><br/><br/><br/></p>
+    <p id="show_rsv">예매 번호 입력: <input id="rsv_num" type="text" onkeyup="if(window.event.keyCode==13){check()}"></p>
+
+    <script type="text/javascript">
+        var ls = window.localStorage;
+        var movie = [];
+        var date = [];
+        var time = [];
+        var seatnum = [];
+
+        var before_list = JSON.parse(ls.getItem("before_list"));
+
+        var num = before_list.length;
+
+        for (var i=0; i<num; i++) {
+            movie.push(before_list[i][0]);
+            date.push(before_list[i][1]);
+            time.push(before_list[i][2]);
+            seatnum.push(before_list[i][3]);
+        }
+
+        if (num == 0) {
+            document.write("<div id='rsv_list'>영화 예매 내역이 없습니다.</div>");
+        }
+        else {
+            document.write("<ol id='rsv_list'>");
+            for (var i=0; i<num; i++) {
+                document.write("<li>"+ date[i] + " <" + movie[i]+">"+"</li>");
+            }
+            document.write("</ol>");
+        }
+
+        function check() {
+            if (document.getElementById("rsv_num").value === "") {
+                alert("예매 번호를 입력해주세요");
+            }
+            else {
+                document.location = "rsv_info.html";
+                var check_num = document.getElementById("rsv_num").value;
+                window.sessionStorage.setItem("check_num", check_num);
+            }
+        }
+    </script>
+</body>
+
+<footer>
+    <div id="copyright"> Copyright (c) 2021 Cinema for Lana Vengeance</div>
+</footer>
+</html>

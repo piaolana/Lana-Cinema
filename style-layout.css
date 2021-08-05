@@ -1,0 +1,48 @@
+
+body {margin: 0; padding: 0; line-height: 1.2em; 
+    font-size: 0.75em; line-height: 1.2em;}
+hr {clear: both;}
+
+nav {margin: 0 0 20px 0; float: left;}
+nav ul li {float: left; margin: 0 5px; list-style: none;}
+nav a {display: block; padding: 5px;}
+
+.wrap {margin: 0; margin-right: auto; margin-left: auto;}
+.left {float: left;}
+.right {float: right;}
+.clear {clear: both;}
+
+header {vertical-align: middle;}
+aside {margin: 5px;}
+aside ul li {float: left; margin: 0 5px; list-style: none;}
+article {margin: 5px 0 10px 0;}
+footer #copyright {margin: 20px 0 0 10px; float: left;}
+
+#logo {float: left; vertical-align: middle; margin: 30px 0 0 20px;}
+#login {margin: 30px;}
+#login fieldset span {display: inline-block;}
+#login_button {position: absolute; left: 260px; top: 145px; height: 50px;}
+
+#join {margin: 30px;}
+#join fieldset span {display: inline-block; vertical-align: middle;}
+#join fieldset input {vertical-align: middle;}
+
+#reserve fieldset span {display: inline-block;}
+
+.movielist {margin: 10px; padding: 5px;}
+.movielist ul li {display:inline-table; list-style-type: none;}
+
+embed {margin: 20px;}
+
+#seat1 {margin-left: 180px; float: left;}
+#seat1 td, #seat2 td {padding: 7px;}
+#seat2 {margin-left: 75px; float: left;}
+
+#screen {margin-left: 150px;}
+#screen td {padding-left: 150px; padding-right: 164px;}
+
+#rsv_list {padding-left: 70px;}
+#show_rsv, #rsv_info {padding-left: 30px;}
+#rsv_num {margin-left: 20px;}
+#cancel {margin-left: 420px;}
+#figure {width: 700px;}
